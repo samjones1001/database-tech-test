@@ -8,7 +8,7 @@ class DatabaseServer < Sinatra::Base
   enable :sessions
 
   get '/' do
-    'Hello DatabaseServer!'
+    erb :index
   end
 
   get '/set' do
@@ -18,11 +18,13 @@ class DatabaseServer < Sinatra::Base
   end
 
   get '/get' do
-    # if !session[:storage].keys.include?(request.query_string)
-    #   flash.now[:notice] = 'hi!'
-    erb :get
+    if session[:storage] && session[:storage].keys.include?(request.query_string)
+      @storage = session[:storage]
+      erb :get
+    else
+      flash.now[:notice] = 'that data item does not exist'
+      erb :get
     end
-
   end
 
   # start the server if ruby file executed directly

@@ -1,1 +1,7 @@
-<%= session[:storage].values %>
+<% if flash[:notice] %>
+  <div id='notice'><%= flash[:notice] %></div>
+<% end %>
+
+<% if @storage %>
+  <%= session[:storage].values %>
+<% end %>
