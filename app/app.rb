@@ -5,7 +5,7 @@ class DatabaseServer < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb :index
+    'Hello DatabaseServer!'
   end
 
   get '/set' do
@@ -15,8 +15,7 @@ class DatabaseServer < Sinatra::Base
   end
 
   get '/get' do
-    'get info'
-     p session[:storage]
+    erb :get
   end
 
   # start the server if ruby file executed directly
