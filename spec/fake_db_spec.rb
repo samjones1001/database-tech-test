@@ -9,12 +9,17 @@ describe FakeDb do
   end
 
   context 'a data item has been created' do
+
     before do
       fake_db.create(key, value)
     end
 
-    it 'stores created data' do
+    it 'stores created data items' do
       expect(fake_db.storage).to include({"somekey"=>"somevalue"})
+    end
+
+    it 'can retreive data items' do
+      expect(fake_db.read(key)).to eq({"somekey"=>"somevalue"})
     end
 
   end

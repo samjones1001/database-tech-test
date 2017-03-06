@@ -10,4 +10,8 @@ class FakeDb
     storage[key] = value
   end
 
+  def read(key)
+    return {key=>@storage[key]}
+  end
+
 end
