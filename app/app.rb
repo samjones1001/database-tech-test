@@ -1,6 +1,9 @@
 require 'sinatra/base'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class DatabaseServer < Sinatra::Base
+  register Sinatra::Flash
   set :port, 4000
   enable :sessions
 
@@ -15,7 +18,11 @@ class DatabaseServer < Sinatra::Base
   end
 
   get '/get' do
+    # if !session[:storage].keys.include?(request.query_string)
+    #   flash.now[:notice] = 'hi!'
     erb :get
+    end
+
   end
 
   # start the server if ruby file executed directly

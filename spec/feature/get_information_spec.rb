@@ -14,5 +14,10 @@ feature 'retrieve data item' do
       expect(page).to have_content('somevalue')
     end
 
+    scenario 'a user cannot look up a data item which does not exist' do
+      visit('/get?idontexist')
+      expect(page).to have_conent('that data item does not exist')
+    end
+
   end
 end
