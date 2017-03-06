@@ -1,6 +1,8 @@
 require 'sinatra/base'
 
 class DatabaseServer < Sinatra::Base
+  set :port, 4000
+
   get '/' do
     'Hello DatabaseServer!'
   end
