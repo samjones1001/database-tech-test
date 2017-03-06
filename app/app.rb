@@ -5,6 +5,10 @@ class DatabaseServer < Sinatra::Base
     'Hello DatabaseServer!'
   end
 
+  get '/set' do
+    'set info'
+  end
+
   get '/get' do
     'get info'
   end
