@@ -35,6 +35,7 @@ feature 'retrieve data item' do
       visit('/get?therearenokeys')
       expect(page).to have_content('that data item does not exist')
     end
+    
   end
 
 end
