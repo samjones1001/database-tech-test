@@ -2,19 +2,21 @@ require 'sinatra/base'
 
 class DatabaseServer < Sinatra::Base
   set :port, 4000
+  enable :sessions
 
   get '/' do
-    'Hello DatabaseServer!'
+    erb :index
   end
 
   get '/set' do
-    'set info'
-    @params = params
+    @params = request.env['rack.request.query_hash']
+    session[:storage] = @params
     erb :set
   end
 
   get '/get' do
     'get info'
+     p session[:storage]
   end
 
   # start the server if ruby file executed directly
