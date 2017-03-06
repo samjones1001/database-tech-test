@@ -19,7 +19,7 @@ describe FakeDb do
     end
 
     it 'can retreive data items' do
-      expect(fake_db.read(key)).to eq({"somekey"=>"somevalue"})
+      expect(fake_db.read(key)).to eq(value)
     end
 
   end

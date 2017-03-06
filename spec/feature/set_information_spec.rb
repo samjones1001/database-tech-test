@@ -1,4 +1,7 @@
 feature 'set data item' do
+  before do
+    visit('/')
+  end
 
   scenario 'a user can visit a page to set new data item' do
     visit ('/set?somekey=somevalue')

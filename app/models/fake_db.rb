@@ -11,7 +11,7 @@ class FakeDb
   end
 
   def read(key)
-    return {key=>@storage[key]}
+    @storage[key]
   end
 
 end

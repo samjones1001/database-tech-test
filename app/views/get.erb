@@ -2,6 +2,6 @@
   <div id='notice'><%= flash[:notice] %></div>
 <% end %>
 
-<% if @storage %>
-  <%= session[:storage].values %>
+<% if @output %>
+  <%= @output %>
 <% end %>

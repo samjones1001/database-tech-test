@@ -2,6 +2,7 @@ feature 'retrieve data item' do
 
   context 'once a data item has been added' do
     before do
+      visit('/')
       visit('/set?somekey=somevalue')
     end
 
@@ -23,6 +24,7 @@ feature 'retrieve data item' do
 
     scenario 'a user will see current information for any item' do
       visit('/set?somekey=adifferentvalue')
+      visit('/get?somekey')
       expect(page).not_to have_content('somevalue')
       expect(page).to have_content('adifferentvalue')
     end
@@ -31,11 +33,15 @@ feature 'retrieve data item' do
 
   context 'when no data items have been added' do
 
+    before do
+      visit('/')
+    end
+
     scenario 'a user will see an error message' do
       visit('/get?therearenokeys')
       expect(page).to have_content('that data item does not exist')
     end
-    
+
   end
 
 end

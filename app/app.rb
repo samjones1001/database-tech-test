@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/base'
 require 'sinatra/flash'
+require_relative 'models/fake_db'
 
 class DatabaseServer < Sinatra::Base
   register Sinatra::Flash
@@ -8,18 +9,18 @@ class DatabaseServer < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb :index
   end
 
   get '/set' do
+    session[:storage] = FakeDb.new
     @params = request.env['rack.request.query_hash']
-    session[:storage] = @params
+    session[:storage].create(@params.keys, @params.values)
     erb :set
   end
 
   get '/get' do
-    if session[:storage] && session[:storage].keys.include?(request.query_string)
-      @storage = session[:storage]
+    if session[:storage] && session[:storage].storage.include?([request.query_string])
+      @output = session[:storage].storage.values
       erb :get
     else
       flash.now[:notice] = 'that data item does not exist'
