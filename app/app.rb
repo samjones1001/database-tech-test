@@ -20,7 +20,7 @@ class DatabaseServer < Sinatra::Base
 
   get '/get' do
     if session[:storage] && session[:storage].storage.include?([request.query_string])
-      @output = session[:storage].storage.values
+      @output = session[:storage].read([request.query_string])
       erb :get
     else
       flash.now[:notice] = 'that data item does not exist'
