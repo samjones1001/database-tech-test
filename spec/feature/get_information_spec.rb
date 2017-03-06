@@ -21,5 +21,11 @@ feature 'retrieve data item' do
       expect(page).to have_content('that data item does not exist')
     end
 
+    scenario 'a user will see current information for any item' do
+      visit('/set?somekey=adifferentvalue')
+      expect(page).not_to have_content('somevalue')
+      expect(page).to have_content('adifferentvalue')
+    end
+
   end
 end

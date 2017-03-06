@@ -9,5 +9,11 @@ feature 'set data item' do
     visit ('/set?somekey=somevalue')
     expect(page).to have_content ('somekey => somevalue')
   end
-  
+
+  scenario 'a data item can be overwritten' do
+    visit('/set?somekey=somevalue')
+    visit('/set?somekey=anothervalue')
+    expect(page).to have_content ('somekey => anothervalue')
+  end
+
 end
