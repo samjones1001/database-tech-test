@@ -9,6 +9,8 @@ class DatabaseServer < Sinatra::Base
 
   get '/set' do
     'set info'
+    @params = params
+    erb :set
   end
 
   get '/get' do
