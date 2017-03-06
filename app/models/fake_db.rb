@@ -6,4 +6,8 @@ class FakeDb
     @storage = {}
   end
 
+  def create(key, value)
+    storage[key] = value
+  end
+
 end
